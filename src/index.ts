@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import previewRouter from './routes/preview';
+import fullReadingRouter from './routes/full-reading';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api', previewRouter);
+app.use('/api', fullReadingRouter);
 
 // Start server
 if (process.env.NODE_ENV !== 'test') {
