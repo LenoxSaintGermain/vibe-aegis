@@ -1,6 +1,7 @@
 import { Firestore } from '@google-cloud/firestore';
 
-const projectId = process.env.FIREBASE_PROJECT_ID || 'orbital-prod'; // Reuse Orbital's project
+// Use GEMINI_PROJECT_ID for consistency (set in Cloud Run environment)
+const projectId = process.env.GEMINI_PROJECT_ID || process.env.FIREBASE_PROJECT_ID || 'third-signal';
 
 export const firestore = new Firestore({
   projectId,
