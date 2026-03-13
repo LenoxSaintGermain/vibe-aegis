@@ -1,0 +1,45 @@
+# Node modules (will be installed during build)
+node_modules/
+
+# Build artifacts (will be generated during build)
+dist/
+
+# Environment files (never include secrets in image)
+.env
+.env.local
+.env.*.local
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+**/*.test.ts
+**/*.spec.ts
+__tests__/
+coverage/
+jest.config.js
+
+# Documentation
+README.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
