@@ -10,7 +10,7 @@ export async function analyzeRepoWithGemini(
   request: GeminiAnalysisRequest
 ): Promise<GeminiAnalysisResponse> {
   const model = vertexAI.getGenerativeModel({
-    model: 'gemini-3-flash',
+    model: 'gemini-1.5-flash',
   });
 
   const prompt = buildAnalysisPrompt(request);
