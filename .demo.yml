@@ -1,0 +1,15 @@
+status: live
+title: Vibe A.E.G.I.S.
+pitch: GitHub Repository Personality Reader that analyzes coding vibes across 10 mystical dimensions using Gemini 3 Flash
+category: developer-tools
+platform: cloudrun
+featured: false
+live_url: https://vibe-aegis-pplaphmpxq-uc.a.run.app
+cover_prompt: A mystical tarot spread with glowing copper and emerald cards floating above a dark parchment background, revealing coding personality archetypes
+tags:
+  - ai
+  - github
+  - developer-tools
+  - tarot
+  - gemini
+  - personality-analysis
