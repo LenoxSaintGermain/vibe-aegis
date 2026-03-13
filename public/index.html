@@ -1,0 +1,76 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibe A.E.G.I.S. - GitHub Tarot Reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="title">Vibe A.E.G.I.S.</h1>
+        <p class="subtitle">Read Your Repo's Coding Vibe</p>
+      </header>
+
+      <main>
+        <!-- Landing state -->
+        <div id="landing-state" class="landing">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="repo-url-input"
+              placeholder="Paste GitHub repo URL..."
+              class="repo-input"
+            />
+            <button id="analyze-btn" class="cta-button">Read My Vibe</button>
+          </div>
+          <p class="hint">Example: github.com/vercel/next.js</p>
+        </div>
+
+        <!-- Loading state -->
+        <div id="loading-state" class="loading hidden">
+          <div class="shimmer"></div>
+          <p>Analyzing your repo's vibes...</p>
+        </div>
+
+        <!-- Preview cards -->
+        <div id="preview-state" class="preview hidden">
+          <div id="cards-container" class="cards"></div>
+          <div class="email-gate">
+            <h2>Unlock the Full Reading</h2>
+            <ul class="benefits">
+              <li>Remaining 7 personality cards</li>
+              <li>A.E.G.I.S. security vulnerability map</li>
+              <li>Third Signal skill pack recommendations</li>
+            </ul>
+            <input type="email" id="email-input" placeholder="your@email.com" class="email-input" />
+            <button id="unlock-btn" class="cta-button">Unlock Full Reading</button>
+            <p class="privacy-note">We'll never spam. One email max per repo.</p>
+          </div>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-state" class="error hidden">
+          <p id="error-message"></p>
+          <button id="retry-btn" class="retry-button">Try Again</button>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Powered by <a href="https://thirdsignal.ai">Third Signal</a> | A.E.G.I.S. Standard v1.0
+        </p>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
