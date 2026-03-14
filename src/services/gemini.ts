@@ -2,7 +2,8 @@ import { VertexAI } from '@google-cloud/vertexai';
 import { GeminiAnalysisRequest, GeminiAnalysisResponse, DIMENSIONS } from '../types/gemini';
 
 const projectId = process.env.GEMINI_PROJECT_ID || 'orbital-prod';
-const location = process.env.GEMINI_LOCATION || 'us-central1';
+// Gemini 3 Flash Preview is only available in 'global' region
+const location = process.env.GEMINI_LOCATION || 'global';
 
 const vertexAI = new VertexAI({ project: projectId, location });
 
