@@ -27,9 +27,22 @@ export async function analyzeRepoWithGemini(
   const response = result.response;
   const text = response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
 
+  // Debug: Log what Gemini actually returned
+  console.log('=== Gemini Response Debug ===');
+  console.log('Full response object:', JSON.stringify(result, null, 2));
+  console.log('Extracted text (first 500 chars):', text.substring(0, 500));
+  console.log('Text type:', typeof text);
+  console.log('============================');
+
   // Parse JSON response
   const jsonMatch = text.match(/\{[\s\S]*\}/);
-  const parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : {};
+
+  if (!jsonMatch) {
+    console.error('No JSON found in Gemini response. Full text:', text);
+    throw new Error(`Gemini returned non-JSON response. First 200 chars: ${text.substring(0, 200)}`);
+  }
+
+  const parsed = JSON.parse(jsonMatch[0]);
 
   return { dimensions: parsed };
 }
