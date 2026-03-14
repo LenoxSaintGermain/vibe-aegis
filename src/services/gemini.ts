@@ -1,37 +1,31 @@
-import { VertexAI } from '@google-cloud/vertexai';
+import { GoogleGenAI } from '@google/genai';
 import { GeminiAnalysisRequest, GeminiAnalysisResponse, DIMENSIONS } from '../types/gemini';
 
-const projectId = process.env.GEMINI_PROJECT_ID || 'orbital-prod';
-// Gemini 3 Flash Preview is only available in 'global' region
-const location = process.env.GEMINI_LOCATION || 'global';
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+  throw new Error('GEMINI_API_KEY environment variable is required');
+}
 
-const vertexAI = new VertexAI({ project: projectId, location });
+const ai = new GoogleGenAI({ apiKey });
 
 export async function analyzeRepoWithGemini(
   request: GeminiAnalysisRequest
 ): Promise<GeminiAnalysisResponse> {
-  const model = vertexAI.getGenerativeModel({
-    model: 'gemini-3-flash-preview',
-  });
-
   const prompt = buildAnalysisPrompt(request);
 
-  const result = await model.generateContent({
-    contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    generationConfig: {
+  const response = await ai.models.generateContent({
+    model: 'gemini-3-flash-preview',
+    contents: prompt,
+    config: {
       maxOutputTokens: 2000,
-      temperature: 0.7,
+      temperature: 1.0, // Gemini 3 optimized for default 1.0
     },
   });
 
-  const response = result.response;
-  const text = response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+  const text = response.text || '{}';
 
-  // Debug: Log what Gemini actually returned
   console.log('=== Gemini Response Debug ===');
-  console.log('Full response object:', JSON.stringify(result, null, 2));
   console.log('Extracted text (first 500 chars):', text.substring(0, 500));
-  console.log('Text type:', typeof text);
   console.log('============================');
 
   // Parse JSON response
